@@ -1,14 +1,15 @@
 # rust-cowsay
 This is planned to be a simplified implementation of cowsay to help me (and anyone else) learn rust and github.
-
-`__________________________`\
-`< hello cowsay using Rust! >`\
-` --------------------------`\
-`        \   ^__^`\
-`         \  (oo)\_______`\
-`            (__)\       )\/\`\
-`                ||----w |`\
-`                ||     ||`\
+<pre>
+ _________________________
+< hello cowsay from Rust! >
+ -------------------------
+        \   ^__^
+         \  (oo)\_______
+            (__)\       )\/\
+                ||----w |
+                ||     ||
+</pre>
 
 
 Planned usage for this command-line program is ` ./rust-cowsay "hello world!" `
