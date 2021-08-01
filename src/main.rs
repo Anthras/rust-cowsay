@@ -16,7 +16,7 @@ fn main() {
     // args[3] = "is"
     // args[4] = "a"
     // args[5] = "test"
-    let message = &args[1];
+    let message = args[1].clone();
 
     // so usage ` ./rust-cowsay "hello world!" `
     if args.len() > 2 {
