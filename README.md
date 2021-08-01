@@ -1,6 +1,16 @@
 # rust-cowsay
 This is planned to be a simplified implementation of cowsay to help me (and anyone else) learn rust and github.
 
+`__________________________`
+`< hello cowsay using Rust! >`
+` --------------------------`
+`        \   ^__^`
+`         \  (oo)\_______`
+`            (__)\       )\/\`
+`                ||----w |`
+`                ||     ||`
+
+
 Planned usage for this command-line program is ` ./rust-cowsay "hello world!" `
 
 * `/src/` is the folder which houses the source code
