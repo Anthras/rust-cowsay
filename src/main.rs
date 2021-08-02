@@ -1,53 +1,69 @@
-use std::env;
 use clap::Clap;
 
+/// Prints stdin in speech bubble for ascii character.
 #[derive(Clap, Debug)]
-#[clap(name = "cowsay")]
+#[clap(name = "\nRust implementation of cowsay:")]
 struct Message {
     /// Message for ascii character to say
-    #[clap(short, long)]
-    msg: String,
+    #[clap()]
+    message: String,
 
     /// Number of lines for speech bubble
     #[clap(short, long, default_value = "1")]
-    number_of_lines: u8,
+    lines: u8,
 
     /// Ascii character
     #[clap(short, long, default_value = "cow")]
-    ascii_character: String,
+    character: String,
 }
-
 
 fn main() {
     let cowsay = Message::parse();
-    println!("{}", cowsay.msg);
-
-
-
-
-    // collect the arguments as a string from command line
-    /* let args: Vec<String> = env::args().collect(); */
     
-    // for now lets have the usage be to only accept one string.
-    // args[0] is the name of the program and each argument 
-    // afterwards is added to the vector list, so that
-    // `./rust-cowsay "hello world" this is a test` would appear
-    // as ["./rust-cowsay", "hello world", "this", "is", "a", "test"]
-    // where:
-    // args[0] = "./rust-cowsay"
-    // args[1] = "hello world"
-    // args[2] = "this"
-    // args[3] = "is"
-    // args[4] = "a"
-    // args[5] = "test"
-    // message = args[1].clone();
+    output(cowsay.message, cowsay.lines, cowsay.character);
 
-    // so usage ` ./rust-cowsay "hello world!" `
-    /*
-    if args.len() > 2 {
-        println!("usage:  ./rust-cowsay \"hello world!\"");
-    } else {
-        println!("{}", &message);
-    } */
-    
+}
+
+fn output(message: String, lines: u8, character: String) {
+    // top speech bubble
+    top_border(&message);
+
+    // sides with message
+    println!("< {} >", &message);
+
+    // bottom speech bubble
+    bottom_border(&message);
+
+    // character
+    display_character(&character);
+}
+
+fn top_border(message: &String) {
+    let length = message.len();
+    let mut top_string = String::from("");
+    top_string.push(' ');
+    for _i in 0..length + 2 {
+        top_string.push('_');
+    }
+    println!("{}", top_string);
+}
+
+fn bottom_border(message: &String) {
+    let length = message.len();
+    let mut top_string = String::from("");
+    top_string.push(' ');
+    for _i in 0..length + 2 {
+        top_string.push('-');
+    }
+    println!("{}", top_string);
+}
+
+fn display_character(character: &String) {
+    if character == "cow" {
+        println!("       \\   ^__^                 ");
+        println!("        \\  (oo)\\_______         ");
+        println!("           (__)\\       )\\/\\    ");
+        println!("                ||----w |        ");
+        println!("                ||     ||        ");
+    }
 }
