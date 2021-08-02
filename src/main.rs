@@ -20,15 +20,24 @@ struct Message {
 fn main() {
     let cowsay = Message::parse();
     
+    // print the output to stdout
     output(cowsay.message, cowsay.lines, cowsay.character);
 
 }
 
+// 
+// consider moving these functions to another file, lib.rs
+// 
+
 fn output(message: String, lines: u8, character: String) {
+    // prints the message to stdout
+    
     // top speech bubble
     top_border(&message);
 
     // sides with message
+    // this may need to be a separate function to parse the input
+    // length and automatically separate on different lines based on length
     println!("< {} >", &message);
 
     // bottom speech bubble
@@ -39,6 +48,8 @@ fn output(message: String, lines: u8, character: String) {
 }
 
 fn top_border(message: &String) {
+    // displays the top of the speech bubble
+    // based on message length
     let length = message.len();
     let mut top_string = String::from("");
     top_string.push(' ');
@@ -49,16 +60,25 @@ fn top_border(message: &String) {
 }
 
 fn bottom_border(message: &String) {
+    // displays the bottom of the speech bubble
+    // based on message length
     let length = message.len();
-    let mut top_string = String::from("");
-    top_string.push(' ');
+    let mut bottom_string = String::from("");
+    bottom_string.push(' ');
     for _i in 0..length + 2 {
-        top_string.push('-');
+        bottom_string.push('-');
     }
-    println!("{}", top_string);
+    println!("{}", bottom_string);
 }
 
+// 
+// consider making these enum type to accept different inputs,
+// like "cow", "clip", "crab", "man"
+// and other to make a 404 character not found
+//
+
 fn display_character(character: &String) {
+    // displays characters based on the character flag
     if character == "cow" {
         println!("       \\   ^__^                 ");
         println!("        \\  (oo)\\_______         ");
