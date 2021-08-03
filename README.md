@@ -12,7 +12,8 @@
 </pre>
 
 
-Planned usage for this command-line program is ` ./rust-cowsay "hello world!" --lines --character `
+Planned usage for this command-line program is 
+` ./rust-cowsay "hello world!" --lines --character --top-bubble-character --bottom-bubble-character `
 
 * `/src/` is the folder which houses the source code
 * `Cargo.lock` is a saved state of the last working build
@@ -23,6 +24,7 @@ Planned usage for this command-line program is ` ./rust-cowsay "hello world!" --
 Implemented features:
 * ascii of the original cowsay cow
 * speech bubble width based on input length
+* custom top and bottom speech bubble characters
 
 Todo:
 * add ascii rust mascot
