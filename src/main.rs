@@ -8,6 +8,14 @@ struct Message {
     #[clap()]
     message: String,
 
+    /// Top of the bubble character
+    #[clap(short, long, default_value = "_")]
+    top_bubble_character: char,
+
+    /// Bottom of the bubble character
+    #[clap(short, long, default_value = "-")]
+    bottom_bubble_character: char,
+
     /// Number of lines for speech bubble
     #[clap(short, long, default_value = "1")]
     lines: u8,
@@ -18,10 +26,12 @@ struct Message {
 }
 
 fn main() {
-    let cowsay = Message::parse();
-    
-    // print the output to stdout
-    output(cowsay.message, cowsay.lines, cowsay.character);
+    let rust_cowsay = Message::parse();
+
+    display_border(&rust_cowsay.message, &rust_cowsay.top_bubble_character);
+    println!("< {} >", &rust_cowsay.message);
+    display_border(&rust_cowsay.message, &rust_cowsay.bottom_bubble_character);
+    display_character(&rust_cowsay.character);
 
 }
 
@@ -29,51 +39,15 @@ fn main() {
 // consider moving these functions to another file, lib.rs
 // 
 
-fn output(message: String, lines: u8, character: String) {
-    // prints the message to stdout
-    
-//
-// consolidate the top_border() and bottom_border() functions since they are the same
-// function text except for the underscore (top) vs hyphen (bottom)
-//
-    
-    // top speech bubble
-    top_border(&message);
-
-    // sides with message
-    // this may need to be a separate function to parse the input
-    // length and automatically separate on different lines based on length
-    println!("< {} >", &message);
-
-    // bottom speech bubble
-    bottom_border(&message);
-
-    // character
-    display_character(&character);
-}
-
-fn top_border(message: &String) {
-    // displays the top of the speech bubble
+fn display_border(message: &String, character: &char) {
+    // displays part of the speech bubble
     // based on message length
     let length = message.len();
-    let mut top_string = String::from("");
-    top_string.push(' ');
+    let mut border_string = String::from(" ");
     for _i in 0..length + 2 {
-        top_string.push('_');
+        border_string.push(*character);
     }
-    println!("{}", top_string);
-}
-
-fn bottom_border(message: &String) {
-    // displays the bottom of the speech bubble
-    // based on message length
-    let length = message.len();
-    let mut bottom_string = String::from("");
-    bottom_string.push(' ');
-    for _i in 0..length + 2 {
-        bottom_string.push('-');
-    }
-    println!("{}", bottom_string);
+    println!("{}", border_string);
 }
 
 // 
@@ -84,6 +58,7 @@ fn bottom_border(message: &String) {
 
 fn display_character(character: &String) {
     // displays characters based on the character flag
+    
     if character == "cow" {
         println!("       \\   ^__^                 ");
         println!("        \\  (oo)\\_______         ");
@@ -91,4 +66,5 @@ fn display_character(character: &String) {
         println!("                ||----w |        ");
         println!("                ||     ||        ");
     }
+    
 }
