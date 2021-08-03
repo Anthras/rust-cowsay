@@ -32,6 +32,11 @@ fn main() {
 fn output(message: String, lines: u8, character: String) {
     // prints the message to stdout
     
+//
+// consolidate the top_border() and bottom_border() functions since they are the same
+// function text except for the underscore (top) vs hyphen (bottom)
+//
+    
     // top speech bubble
     top_border(&message);
 
